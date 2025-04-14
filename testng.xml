@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="SeleniumTestSuite">
+    <test name="SeleniumTests">
+        <!-- Parameters to pass to the tests (browser name, timeout, etc.) -->
+        <parameter name="browser" value="chrome"/>
+
+        <!-- Specify your test classes here -->
+        <classes>
+            <class name="tests.Test01"/>
+        </classes>
+    </test>
+</suite>
