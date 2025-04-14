@@ -91,7 +91,6 @@ Example testng.xml:
     <test name="SeleniumTests">
         <!-- Parameters to pass to the tests (browser name, timeout, etc.) -->
         <parameter name="browser" value="chrome"/>
-
         <!-- Specify your test classes here -->
         <classes>
             <class name="tests.Test01"/>
