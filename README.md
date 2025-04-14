@@ -5,6 +5,7 @@ It provides an organized and maintainable structure for writing and running Sele
 
 Project Structure:
 ----------------------
+<pre> ```plaintext .
 .
 ├── src
 │   ├── main
@@ -23,6 +24,7 @@ Project Structure:
 ├── local.properties                        # Store environment-specific configurations
 ├── pom.xml                                  # Maven project configuration
 └── README.md                                # Project description and setup instructions
+``` </pre>
 
 Project Overview:
 ------------------------
