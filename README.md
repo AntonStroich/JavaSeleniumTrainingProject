@@ -86,6 +86,7 @@ TestNG is configured through the testng.xml file, where you can specify which te
 
 Example testng.xml:
 
+<pre> ```plaintext .
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="SeleniumTestSuite">
     <test name="SeleniumTests">
@@ -97,4 +98,4 @@ Example testng.xml:
         </classes>
     </test>
 </suite>
-
+``` </pre>
