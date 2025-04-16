@@ -58,20 +58,62 @@
         <artifactId>logback-classic</artifactId>
         <version>1.4.11</version>
      </dependency>
+
+     <!-- Allure TestNG adapter -->
+     <dependency>
+         <groupId>io.qameta.allure</groupId>
+         <artifactId>allure-testng</artifactId>
+         <version>2.24.0</version>
+     </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Maven Surefire Plugin для запуска TestNG -->
+            <!-- Maven Surefire Plugin: Used to run TestNG tests during the Maven build lifecycle -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <groupId>org.apache.maven.plugins</groupId> <!-- Group ID for Maven plugins -->
+                <artifactId>maven-surefire-plugin</artifactId> <!-- Plugin that runs unit tests -->
+                <version>3.2.5</version> <!-- Version of the Surefire plugin -->
                 <configuration>
+                    <!-- Specifies the TestNG suite XML file to run -->
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>testng.xml</suiteXmlFile> <!-- Path to your TestNG configuration file -->
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <!-- Defines where Allure should output test result files -->
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
+            </plugin>
+            <!-- Allure Maven Plugin: Used to generate and serve Allure test reports -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId> <!-- Group ID for Allure plugin -->
+                <artifactId>allure-maven</artifactId> <!-- Artifact ID for the Allure Maven plugin -->
+                <version>2.11.2</version> <!-- Version of the Allure Maven plugin -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>serve</goal> <!-- Goal to serve the Allure report on a local web server -->
+                        </goals>
+                        <configuration>
+                            <!-- Path to the directory where Allure stores the results -->
+                            <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Maven Clean Plugin: Cleans the target directory before build -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId> <!-- Group ID for Maven plugins -->
+                <artifactId>maven-clean-plugin</artifactId> <!-- Plugin used to clean the project -->
+                <version>3.1.0</version> <!-- Version of the clean plugin -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>clean</goal> <!-- Defines the 'clean' goal to remove target directory -->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -80,7 +122,6 @@
         <!-- Define a profile called 'skip-tests' to skip tests during the build -->
         <profile>
             <id>skip-tests</id> <!-- The ID of the profile, which can be referenced in Maven commands -->
-
             <build>
                 <plugins>
                     <!-- Configure the maven-surefire-plugin to control test execution -->
@@ -88,15 +129,18 @@
                         <groupId>org.apache.maven.plugins</groupId> <!-- The group ID of the plugin -->
                         <artifactId>maven-surefire-plugin</artifactId> <!-- The artifact ID of the plugin -->
                         <version>2.22.2</version> <!-- The version of the plugin to use -->
-
                         <configuration>
                             <!-- Skip the execution of tests when this profile is activated -->
                             <skip>true</skip> <!-- Disables test execution during Maven build -->
+                            <!-- Specifies the output directory where Allure will store test results.
+                             By default, it stores results in 'target/allure-results'. -->
+                            <systemPropertyVariables>
+                                <allure.results.directory>target/allure-results</allure.results.directory>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
-
 </project>

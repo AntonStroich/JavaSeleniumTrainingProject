@@ -39,3 +39,9 @@ src/main/resources/local.properties
 
 # Logs
 *.log
+
+# Allure results and report folders
+allure-report/
+
+# Ignore Allure results
+target/allure-results/

@@ -108,6 +108,14 @@ Logging behavior is controlled via the logback.xml file located in src/main/reso
 mvn clean install -Pskip-tests
 ```
 
+## Allure Report
+Allure is a framework for generating beautiful, interactive test reports.
+
+### Commands
+Run tests: mvn clean test
+Generate report: mvn allure:report
+View report: mvn allure:serve
+
 ## TestNG Configuration:
 ----------------------
 TestNG is configured through the testng.xml file, where you can specify which tests to run, pass parameters like browser name, timeouts, etc.

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utils.ConfigReader;
+import io.qameta.allure.*;
 
 public class Test01 extends BaseTest {
 
@@ -15,6 +16,7 @@ public class Test01 extends BaseTest {
 
     // Test to open the URL from the config and verify the page title
     @Test
+    @Description("Verify that the valid title is displayed on the home page")
     public void openAndVerifyTitle() {
         // Log the start of the test
         logger.info("Starting the test to open the URL and verify the title");
