@@ -20,7 +20,7 @@ public abstract class BasePage {
      * Opens the page. This method must be implemented in subclasses.
      */
     @Step("Open page")
-    public void open();
+    public abstract void open();
 
     /**
      * Waits for the page to fully load.
