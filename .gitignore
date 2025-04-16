@@ -35,7 +35,7 @@ build/
 .DS_Store
 
 ### Ignore local config file
-local.properties
+src/main/resources/local.properties
 
 # Logs
 *.log

@@ -1,37 +1,80 @@
 package utils;
 
-
-// Importing necessary classes for file input and handling exceptions
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * ConfigReader is a utility class for reading configuration properties
+ * from two different sources:
+ * 1. config.properties - contains non-sensitive project-wide settings (e.g., baseUrl).
+ * 2. local.properties - contains sensitive or environment-specific data (e.g., credentials).
+ *
+ * This allows better separation of secrets from general settings and makes it easier
+ * to manage configurations across different environments.
+ */
 public class ConfigReader {
-    // Properties object that will hold all the configuration key-value pairs from the 'local.properties' file
-    private static Properties properties = new Properties();
 
-    // Static block that runs when the class is first loaded. It attempts to load the properties from the file.
+    // Properties object to store public config (e.g., environment URLs)
+    private static final Properties configProps = new Properties();
+
+    // Properties object to store sensitive or machine-specific data (e.g., login, password)
+    private static final Properties secretProps = new Properties();
+
+    // Static block is executed once when the class is loaded
     static {
         try {
-            // Opening the 'local.properties' file using FileInputStream
-            FileInputStream file = new FileInputStream("local.properties");
-            // Loading the properties from the file into the 'properties' object
-            properties.load(file);
-        } catch (IOException error) {
-            // If there's an IOException (e.g., file not found), throw a RuntimeException and stop the program
-            throw new RuntimeException("Failed to load configuration from local.properties ", error);
+            // Load general configurations from src/main/resources/config.properties
+            FileInputStream configFile = new FileInputStream("src/main/resources/config.properties");
+            configProps.load(configFile);
+
+            // Load secrets from local.properties (should be excluded from version control)
+            FileInputStream secretFile = new FileInputStream("src/main/resources/local.properties");
+            secretProps.load(secretFile);
+
+        } catch (IOException e) {
+            // If the file cannot be loaded, throw a runtime exception to prevent tests from running
+            throw new RuntimeException("Failed to load configuration files", e);
         }
     }
 
     /**
-     * This method retrieves the value associated with a given key from the loaded properties.
+     * Retrieves the value associated with the given key from the config.properties file,
+     * which typically stores non-sensitive configuration such as base URLs, timeouts, flags, etc.
      *
-     * @param key - The key whose value you want to retrieve from the properties file.
-     * @return The value associated with the key as a String.
+     * If the key is not found, a RuntimeException will be thrown to ensure that required configuration
+     * values are not missing at runtime.
+     *
+     * @param key The property key to retrieve from config.properties.
+     * @return The corresponding value for the provided key.
+     * @throws RuntimeException if the key is not found in the config.properties file.
      */
 
-    public static String getProperty(String key) {
-        // Fetching the value for the specified key
-        return properties.getProperty(key);
+    public static String getConfigProperty(String key) {
+        String value = configProps.getProperty(key);
+        if (value == null) {
+            throw new RuntimeException("Missing required configuration property: " + key);
+        }
+        return value;
+    }
+
+
+    /**
+     * Retrieves the value associated with the given key from the local.properties file,
+     * which typically contains sensitive or environment-specific configuration such as credentials.
+     *
+     * If the key is not found, a RuntimeException is thrown to avoid silent failures.
+     *
+     * @param key The property key to retrieve from local.properties.
+     * @return The corresponding value for the provided key.
+     * @throws RuntimeException if the key does not exist in the properties file.
+     */
+
+    public static String getLocalProperty(String key) {
+        String value = secretProps.getProperty(key);
+        if (value == null) {
+            throw new RuntimeException("Missing required local property: " + key);
+        }
+        return value;
     }
 }

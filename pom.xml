@@ -60,4 +60,27 @@
         </plugins>
     </build>
 
+    <profiles>
+        <!-- Define a profile called 'skip-tests' to skip tests during the build -->
+        <profile>
+            <id>skip-tests</id> <!-- The ID of the profile, which can be referenced in Maven commands -->
+
+            <build>
+                <plugins>
+                    <!-- Configure the maven-surefire-plugin to control test execution -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId> <!-- The group ID of the plugin -->
+                        <artifactId>maven-surefire-plugin</artifactId> <!-- The artifact ID of the plugin -->
+                        <version>2.22.2</version> <!-- The version of the plugin to use -->
+
+                        <configuration>
+                            <!-- Skip the execution of tests when this profile is activated -->
+                            <skip>true</skip> <!-- Disables test execution during Maven build -->
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
