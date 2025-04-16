@@ -30,32 +30,34 @@
         <scope>test</scope>
     </dependency>
 
-    <!-- WebDriverManager (по желанию) -->
+    <!-- WebDriverManager -->
     <dependency>
         <groupId>io.github.bonigarcia</groupId>
         <artifactId>webdrivermanager</artifactId>
         <version>5.8.0</version>
     </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>13.0</version>
-            <scope>compile</scope>
-        </dependency>
 
-        <!-- SLF4J API -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>2.0.9</version>
-        </dependency>
+    <!-- JetBrains annotations used for nullability checks and static code analysis -->
+    <dependency>
+         <groupId>org.jetbrains</groupId>
+         <artifactId>annotations</artifactId>
+         <version>13.0</version>
+         <scope>compile</scope>
+    </dependency>
 
-        <!-- Logback - the implementation of the SLF4J logging facade -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.11</version>
-        </dependency>
+    <!-- SLF4J API -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>2.0.9</version>
+    </dependency>
+
+    <!-- Logback - the implementation of the SLF4J logging facade -->
+     <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.4.11</version>
+     </dependency>
     </dependencies>
 
     <build>
