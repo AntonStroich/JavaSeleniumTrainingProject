@@ -65,22 +65,28 @@ Setup Instructions:
 
 2. Install Dependencies:
    Maven will automatically download the necessary dependencies like Selenium, TestNG, WebDriverManager, etc.
-   mvn clean install
+   mvn clean install -Pskip-tests
 
 3. Configure Local Settings:
     - Edit local.properties to set custom environment properties.
       Example:
-      baseURL=https://yourwebsite.com
-      className=exampleClassName
+      username=your_username
 
-4. Run Tests:
-   You can run tests using Maven with the following command:
-   mvn clean test
+## Running Tests with Maven
 
-   To specify a browser, use the -Dbrowser flag:
-   mvn clean test -Dbrowser=firefox
+This project uses Maven for building and running tests. By default, tests are executed during the `mvn clean install` command. However, you can skip tests during the build process if you don't want them to run by using a custom Maven profile.
 
-TestNG Configuration:
+### Skipping Tests
+
+To **skip tests** during the `mvn clean install` command, use the `skip-tests` profile. This profile is configured to skip the execution of tests by using the `maven-surefire-plugin`.
+
+#### Command to skip tests:
+
+```bash
+mvn clean install -Pskip-tests
+
+
+## TestNG Configuration:
 ----------------------
 TestNG is configured through the testng.xml file, where you can specify which tests to run, pass parameters like browser name, timeouts, etc.
 
