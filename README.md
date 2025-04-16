@@ -85,6 +85,28 @@ To **skip tests** during the `mvn clean install` command, use the `skip-tests` p
 ```bash
 mvn clean install -Pskip-tests
 
+## Logging in the Project
+This project uses SLF4J with Logback for logging during test execution. Logs provide insights into test flow, debugging, and error handling.
+
+### Logger Setup
+The logger is initialized in each class using:
+private static final Logger logger = LoggerFactory.getLogger(ClassName.class);
+
+### Logging Levels
+INFO: General information (e.g., setup and teardown).
+DEBUG: Detailed execution info for debugging.
+ERROR: Logs error messages when something goes wrong.
+
+#### Example
+logger.info("Starting test execution...");
+logger.error("An error occurred: {}", errorMessage);
+
+### Logback Configuration
+Logging behavior is controlled via the logback.xml file located in src/main/resources. By default, logs are printed to the console, but this can be changed to log to a file.
+
+```bash
+mvn clean install -Pskip-tests
+```
 
 ## TestNG Configuration:
 ----------------------
@@ -105,3 +127,4 @@ Example testng.xml:
         </classes>
     </test>
 </suite>
+```

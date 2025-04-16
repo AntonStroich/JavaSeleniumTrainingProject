@@ -3,6 +3,8 @@ package utils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * ConfigReader is a utility class for reading configuration properties
@@ -14,6 +16,8 @@ import java.util.Properties;
  * to manage configurations across different environments.
  */
 public class ConfigReader {
+    // Logger initialization for logging in this class
+    private static final Logger logger = LoggerFactory.getLogger(ConfigReader.class);
 
     // Properties object to store public config (e.g., environment URLs)
     private static final Properties configProps = new Properties();
@@ -25,15 +29,18 @@ public class ConfigReader {
     static {
         try {
             // Load general configurations from src/main/resources/config.properties
+            logger.info("Loading config.properties...");
             FileInputStream configFile = new FileInputStream("src/main/resources/config.properties");
             configProps.load(configFile);
 
             // Load secrets from local.properties (should be excluded from version control)
+            logger.info("Loading local.properties...");
             FileInputStream secretFile = new FileInputStream("src/main/resources/local.properties");
             secretProps.load(secretFile);
 
         } catch (IOException e) {
             // If the file cannot be loaded, throw a runtime exception to prevent tests from running
+            logger.error("Failed to load configuration files", e);
             throw new RuntimeException("Failed to load configuration files", e);
         }
     }
@@ -53,6 +60,7 @@ public class ConfigReader {
     public static String getConfigProperty(String key) {
         String value = configProps.getProperty(key);
         if (value == null) {
+            logger.error("Missing required configuration property: {}", key);
             throw new RuntimeException("Missing required configuration property: " + key);
         }
         return value;
@@ -73,6 +81,7 @@ public class ConfigReader {
     public static String getLocalProperty(String key) {
         String value = secretProps.getProperty(key);
         if (value == null) {
+            logger.error("Missing required local property: {}", key);
             throw new RuntimeException("Missing required local property: " + key);
         }
         return value;
