@@ -13,12 +13,18 @@ public class HomePage extends BasePage {
         super(driver, wait);
     }
 
-    @Step("Opening Home Page using URL from config")
+    @Step("Open Home Page using URL from config")
     @Override
     public void open() {
-        String url = getUrl("baseUrl");
-        logger.info("Opening Home Page at URL: {}", url);
-        driver.get(url);
+        logger.info("Opening Home Page using URL from config");
+        openUrl("baseUrl");
+        waitForPageToLoad();
+    }
+
+    @Step("Wait for Home Page to be loaded")
+    @Override
+    public void waitForPageToLoad() {
+        logger.info("Wait for Home Page to be loaded");
         waitForPageToLoad(logo);
     }
 

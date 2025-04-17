@@ -36,8 +36,15 @@ public abstract class BasePage {
     /**
      * Returns the URL for the specific page.
      */
-    protected String getUrl(String url) {
+    private String getUrl(String url) {
         return ConfigReader.getConfigProperty(url);
+    };
+
+    @Step("Open Url")
+    protected void openUrl(String url) {
+        String urlToOpen = getUrl(url);
+        logger.info("Opening URL: {}", url);
+        driver.get(urlToOpen);
     };
 
     /**
@@ -53,5 +60,8 @@ public abstract class BasePage {
         logger.info("Current page title: {}", title);
         return title;
     }
+
+    @Step("Wait for Admin Login Page to be loaded")
+    public abstract void waitForPageToLoad();
 }
 
