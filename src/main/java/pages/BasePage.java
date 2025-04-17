@@ -3,6 +3,7 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -18,12 +19,6 @@ public abstract class BasePage {
         this.driver = driver;
         this.wait = wait;
     }
-
-    /**
-     * Opens the page. This method must be implemented in subclasses.
-     */
-    @Step("Open page")
-    public abstract void open();
 
     /**
      * Waits for the page to fully load.
@@ -48,6 +43,23 @@ public abstract class BasePage {
     };
 
     /**
+     * Types text into a WebElement after clearing it.
+     */
+    @Step("Clear and type text into element")
+    protected void clearAndType(WebElement element, String text) {
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    /**
+     * Clicks on the given WebElement.
+     */
+    @Step("Click on element")
+    protected void clickElement(WebElement element) {
+        element.click();
+    }
+
+    /**
      * Retrieves the current page title.
      * This method is commonly used in tests for validation purposes,
      * and can be reused across all page classes that extend BasePage.
@@ -61,7 +73,11 @@ public abstract class BasePage {
         return title;
     }
 
-    @Step("Wait for Admin Login Page to be loaded")
+    /**
+     * Abstract method that must be implemented by each page object
+     * to define the specific condition that determines when the page is fully loaded.
+     * Typically used to wait for a key element to become visible.
+     */
     public abstract void waitForPageToLoad();
 }
 

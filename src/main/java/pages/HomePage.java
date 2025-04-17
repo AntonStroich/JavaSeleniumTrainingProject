@@ -3,6 +3,7 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
@@ -13,8 +14,12 @@ public class HomePage extends BasePage {
         super(driver, wait);
     }
 
+    // Getters for WebElements
+    private WebElement getLogo() {
+        return driver.findElement(logo);
+    }
+
     @Step("Open Home Page using URL from config")
-    @Override
     public void open() {
         logger.info("Opening Home Page using URL from config");
         openUrl("baseUrl");
