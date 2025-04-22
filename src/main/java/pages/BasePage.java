@@ -24,6 +24,11 @@ public abstract class BasePage {
     }
 
     /**
+     * Abstract method to be implemented in child classes to define page-specific loading conditions.
+     */
+    public abstract void waitForPageToLoad();
+
+    /**
      * Waits for the provided element locator to be visible on the page.
      *
      * @param element Locator of the element that signifies the page is loaded.
@@ -68,8 +73,4 @@ public abstract class BasePage {
         return title;
     }
 
-    /**
-     * Abstract method to be implemented in child classes to define page-specific loading conditions.
-     */
-    public abstract void waitForPageToLoad();
 }
