@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class HomePage extends BasePage {
 
-    private final By logo = By.className("hotel-logoUrl");
+    private final By logo = By.cssSelector(".btn.btn-primary.btn-lg");
 
     public HomePage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);

@@ -17,7 +17,7 @@ public class AdminLoginPage extends BasePage {
     private final By loginCard = By.className("card");
     private final By usernameField = By.id("username");
     private final By passwordField = By.id("password");
-    private final By loginBtn = By.cssSelector(".btn.btn-primary");
+    private final By loginBtn = By.id("doLogin");
 
     public AdminLoginPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
