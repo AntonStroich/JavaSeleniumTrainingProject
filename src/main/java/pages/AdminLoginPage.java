@@ -11,7 +11,7 @@ import utils.ConfigReader;
 /**
  * Page Object representing the Admin Login Page.
  */
-public class AdminLoginPage extends BasePage {
+public class AdminLoginPage extends AdminBasePage {
 
     // Locators
     private final By loginCard = By.className("card");
@@ -32,7 +32,7 @@ public class AdminLoginPage extends BasePage {
         return new TextField(driver, driver.findElement(passwordField));
     }
 
-    private Button getLoginButton() {
+    private Button getLoginBtn() {
         return new Button(driver, driver.findElement(loginBtn));
     }
 
@@ -78,9 +78,9 @@ public class AdminLoginPage extends BasePage {
      * Clicks the login button.
      */
     @Step("Click login button")
-    public void clickLogin() {
+    public void clickLoginBtn() {
         logger.info("Clicking Login button");
-        getLoginButton().click();
+        getLoginBtn().click();
     }
 
     /**
@@ -100,7 +100,7 @@ public class AdminLoginPage extends BasePage {
     public void loginAs(String username, String password) {
         enterUsername(username);
         enterPassword(password);
-        clickLogin();
+        clickLoginBtn();
 
         // Wait for transition to AdminRoomsPage
         AdminRoomsPage adminRoomsPage = new AdminRoomsPage(driver, wait);

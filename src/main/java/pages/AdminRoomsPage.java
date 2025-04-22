@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Page Object for the Admin Rooms management page.
  */
-public class AdminRoomsPage extends BasePage {
+public class AdminRoomsPage extends AdminBasePage {
 
     private final By createRoomBtn = By.id("createRoom");
 
