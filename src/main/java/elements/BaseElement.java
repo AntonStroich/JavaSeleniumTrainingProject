@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
  * Abstract base class for all custom UI elements.
  * Wraps a Selenium WebElement and provides common interaction methods with logging.
  */
-public abstract class BaseElement {
+public  class BaseElement {
     protected WebDriver driver;
     protected WebElement element;
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
