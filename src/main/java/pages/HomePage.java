@@ -3,9 +3,12 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * Page Object for the Home Page.
+ * Contains logic to open and wait for the main site page.
+ */
 public class HomePage extends BasePage {
 
     private final By logo = By.className("hotel-logoUrl");
@@ -14,23 +17,23 @@ public class HomePage extends BasePage {
         super(driver, wait);
     }
 
-    // Getters for WebElements
-    private WebElement getLogo() {
-        return driver.findElement(logo);
-    }
-
-    @Step("Open Home Page using URL from config")
+    /**
+     * Opens the home page using the base URL from config.
+     */
+    @Step("Open Home Page using 'baseUrl' config")
     public void open() {
-        logger.info("Opening Home Page using URL from config");
+        logger.info("Opening Home Page");
         openUrl("baseUrl");
         waitForPageToLoad();
     }
 
-    @Step("Wait for Home Page to be loaded")
+    /**
+     * Waits for the Home Page to be fully loaded.
+     */
+    @Step("Wait for Home Page to load")
     @Override
     public void waitForPageToLoad() {
-        logger.info("Wait for Home Page to be loaded");
+        logger.info("Waiting for Home Page logo to be visible");
         waitForPageToLoad(logo);
     }
-
 }

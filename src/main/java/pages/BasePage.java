@@ -3,13 +3,16 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.ConfigReader;
 
+/**
+ * Abstract base class for all page objects.
+ * Provides shared functionality like page load waiting and URL opening.
+ */
 public abstract class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
@@ -21,52 +24,44 @@ public abstract class BasePage {
     }
 
     /**
-     * Waits for the page to fully load.
-     */
-    @Step("Wait for page to load")
-    protected void waitForPageToLoad(By element) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-    };
-
-    /**
-     * Returns the URL for the specific page.
-     */
-    private String getUrl(String url) {
-        return ConfigReader.getConfigProperty(url);
-    };
-
-    @Step("Open Url")
-    protected void openUrl(String url) {
-        String urlToOpen = getUrl(url);
-        logger.info("Opening URL: {}", url);
-        driver.get(urlToOpen);
-    };
-
-    /**
-     * Types text into a WebElement after clearing it.
-     */
-    @Step("Clear and type text into element")
-    protected void clearAndType(WebElement element, String text) {
-        element.clear();
-        element.sendKeys(text);
-    }
-
-    /**
-     * Clicks on the given WebElement.
-     */
-    @Step("Click on element")
-    protected void clickElement(WebElement element) {
-        element.click();
-    }
-
-    /**
-     * Retrieves the current page title.
-     * This method is commonly used in tests for validation purposes,
-     * and can be reused across all page classes that extend BasePage.
+     * Waits for the provided element locator to be visible on the page.
      *
-     * @return The title of the currently loaded page.
+     * @param element Locator of the element that signifies the page is loaded.
      */
-    @Step("Getting the current page title")
+    @Step("Wait for page to load: {element}")
+    protected void waitForPageToLoad(By element) {
+        logger.info("Waiting for visibility of element: {}", element);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+    }
+
+    /**
+     * Reads the actual URL from configuration file using its key.
+     *
+     * @param urlKey Property key for the URL
+     * @return Resolved URL from configuration
+     */
+    private String getUrl(String urlKey) {
+        return ConfigReader.getConfigProperty(urlKey);
+    }
+
+    /**
+     * Opens the page using the URL resolved by key from configuration.
+     *
+     * @param urlKey Key in configuration for the target URL
+     */
+    @Step("Open URL by config key: {urlKey}")
+    protected void openUrl(String urlKey) {
+        String urlToOpen = getUrl(urlKey);
+        logger.info("Opening URL: {}", urlToOpen);
+        driver.get(urlToOpen);
+    }
+
+    /**
+     * Retrieves the current browser page title.
+     *
+     * @return Current page title
+     */
+    @Step("Get current page title")
     public String getTitle() {
         String title = driver.getTitle();
         logger.info("Current page title: {}", title);
@@ -74,10 +69,7 @@ public abstract class BasePage {
     }
 
     /**
-     * Abstract method that must be implemented by each page object
-     * to define the specific condition that determines when the page is fully loaded.
-     * Typically used to wait for a key element to become visible.
+     * Abstract method to be implemented in child classes to define page-specific loading conditions.
      */
     public abstract void waitForPageToLoad();
 }
-
