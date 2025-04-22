@@ -51,6 +51,8 @@ public abstract class AdminBasePage extends BasePage {
     @Step("Logout from Admin")
     public void logout() {
         navbar.clickLogoutBtn();  // Call the logout button click from AdminNavbar
+
+        // Wait for transition to HomePage
         HomePage homePage = new HomePage(driver, wait);
         homePage.waitForPageToLoad();
     }

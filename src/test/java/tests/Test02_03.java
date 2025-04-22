@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pages.AdminLoginPage;
 import pages.AdminRoomsPage;
 import pages.HomePage;
+import org.testng.asserts.SoftAssert;
 
 /**
  * Test02_03 - Includes multiple verifications for the Admin flow.
@@ -24,15 +25,17 @@ public class Test02_03 extends BaseTest {
     @Test()
     @Description("Verify that the valid title is displayed on the Admin Rooms page")
     public void openAndVerifyTitle() {
+        SoftAssert softAssert = new SoftAssert();
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver, wait);
         adminLoginPage.openPage();
         adminLoginPage.loginAsAdminFromConfig();
-
         roomsPage = new AdminRoomsPage(driver, wait);
         String pageTitle = roomsPage.getTitle();
         logger.info("Page title after login: {}", pageTitle);
-        Assert.assertEquals(pageTitle, "Restful-booker-platform demo", "Page title does not match after login");
+        softAssert.assertEquals(pageTitle, "Restful-booker-platform demo", "Page title does not match after login");
+        softAssert.assertTrue(roomsPage.isNavbarDisplayed(), "Navbar is not displayed");
         logger.info("Test passed: Page title matches expected value after login");
+        softAssert.assertAll();
     }
 
     /**
@@ -42,7 +45,6 @@ public class Test02_03 extends BaseTest {
     @Description("Verify that user is redirected to HomePage after logout and the title is correct")
     public void logoutAndVerifyTitle() {
         roomsPage.logout();
-
         HomePage homePage = new HomePage(driver, wait);
         String homeTitle = homePage.getTitle();
         logger.info("Page title after logout: {}", homeTitle);

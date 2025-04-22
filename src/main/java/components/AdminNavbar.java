@@ -4,8 +4,6 @@ import elements.Button;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.AdminRoomsPage;
-import utils.ConfigReader;
 
 /**
  * Represents the Admin Navbar component.
@@ -14,7 +12,7 @@ import utils.ConfigReader;
 public class AdminNavbar extends BaseComponent {
 
     // Locator for the Admin Navbar component
-    private final By navbar = By.id("admin-navbar");
+    private final By navbar = By.cssSelector(".navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4");
     // Locator for the "Logout" button
     private final By logoutBtn = By.cssSelector(".btn.btn-outline-danger.my-2.my-sm-0");
 
@@ -42,8 +40,6 @@ public class AdminNavbar extends BaseComponent {
     @Step("Click logout button")
     public void clickLogoutBtn() {
         logger.info("Clicking Logout button");
-
-        // Wait for transition to HomePage
         getLogoutBtn().click();
     }
 }
