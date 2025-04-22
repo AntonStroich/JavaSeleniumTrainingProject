@@ -7,7 +7,7 @@
         <!-- Specify your test classes here -->
         <classes>
             <class name="tests.Test01"/>
-            <class name="tests.Test02"/>
+            <class name="tests.Test02_03"/>
         </classes>
     </test>
 </suite>
