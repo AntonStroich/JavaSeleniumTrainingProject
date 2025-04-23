@@ -9,32 +9,36 @@ It provides an organized and maintainable structure for writing and running Sele
 .
 ├── src
 │   ├── main
-│   │   └── java
-│   │       ├── components
-│   │       │   └── BaseComponent.java       # Base class for reusable UI components (navbar, footer, etc.)
-│   │       │   └── AdminNavbar.java         # Represents the Admin Navbar component
-│   │       ├── elements
-│   │       │   └── BaseElement.java         # Abstract base class for custom UI elements (buttons, text fields)
-│   │       │   └── Button.java              # Custom Button element with additional actions
-│   │       │   └── TextField.java           # Custom TextField element with methods for typing and clearing text
-│   │       ├── pages
-│   │       │   └── BasePage.java            # Abstract base class for web pages (includes common actions like open, getTitle)
-│   │       │   └── HomePage.java            # Represents the Home page
-│   │       │   └── AdminLoginPage.java      # Represents the Admin login page
-│   │       │   └── AdminRoomsPage.java      # Represents the Admin rooms page
-│   │       └── utils
-│   │           └── ConfigReader.java        # Configuration utility for reading from local.properties
-│   │           └── Timeouts.java            # Enum for different timeout configurations (SHORT, MEDIUM, LONG)
+│   │   ├── java
+│   │   │   ├── components
+│   │   │   │   └── BaseComponent.java       # Base class for reusable UI components (navbar, footer, etc.)
+│   │   │   │   └── AdminNavbar.java         # Represents the Admin Navbar component
+│   │   │   ├── elements
+│   │   │   │   └── BaseElement.java         # Abstract base class for custom UI elements (buttons, text fields)
+│   │   │   │   └── Button.java              # Custom Button element with additional actions
+│   │   │   │   └── TextField.java           # Custom TextField element with methods for typing and clearing text
+│   │   │   ├── pages
+│   │   │   │   └── BasePage.java            # Abstract base class for web pages (includes common actions like open, getTitle)
+│   │   │   │   └── HomePage.java            # Represents the Home page
+│   │   │   │   └── AdminBasePage.java       # Base class for Admin pages
+│   │   │   │   └── AdminLoginPage.java      # Represents the Admin login page
+│   │   │   │   └── AdminRoomsPage.java      # Represents the Admin rooms page
+│   │   │   └── utils
+│   │   │       └── ConfigReader.java        # Configuration utility for reading from local.properties
+│   │   │       └── DriverManager.java       # Utility class that manages WebDriver and WebDriverWait instances
+│   │   │       └── Timeouts.java            # Enum for different timeout configurations (SHORT, MEDIUM, LONG)
+│   │   └── resources
+│   │           └── local.properties         # File for storing environment-specific configurations. This file should not be added to the repository.
+│   │           └── config.properties        # File for storing general configuration parameters for the application. This file can be added to the repository.
 │   └── test
-│       ├── java
-│       │   └── tests
-│       │       ├── BaseTest.java            # Base class with WebDriver setup and teardown
-│       │       ├── Test01.java              # HomePage test class
-│       │       └── Test02_03.java           # Admin flow test class with login and logout
-│       └── resources
-│           └── testng.xml                   # TestNG suite configuration file
-├── .gitignore                                # Git ignore file to exclude unnecessary files
-├── local.properties                         # Store environment-specific configurations
+│        └── java
+│           └── tests
+│               ├── BaseTest.java             # Base class with WebDriver setup and teardown
+│               ├── Test01.java               # HomePage test class
+│               └── Test02_03.java            # Admin flow test class with login and logout
+│                                                       
+├── .gitignore                                # Git ignore file to exclude unnecessary files                        
+├── testng.xml                                # TestNG suite configuration file
 ├── pom.xml                                   # Maven project configuration
 └── README.md                                 # Project description and setup instructions
 
