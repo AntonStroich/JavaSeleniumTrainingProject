@@ -27,7 +27,7 @@ public class Test02_03 extends BaseTest {
     @Description("Verify that the valid title is displayed on the Admin Rooms page")
     public void openAndVerifyTitle() {
         SoftAssert softAssert = new SoftAssert();
-        AdminLoginPage adminLoginPage = new AdminLoginPage(driver, wait);
+        AdminLoginPage adminLoginPage = new AdminLoginPage(getDriver(), getWait());
         adminLoginPage.openPage();
         roomsPage = adminLoginPage.loginWithValidAdminCredentialsFromConfig();
         String pageTitle = roomsPage.getTitle();
