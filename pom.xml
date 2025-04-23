@@ -89,7 +89,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId> <!-- Group ID for Allure plugin -->
                 <artifactId>allure-maven</artifactId> <!-- Artifact ID for the Allure Maven plugin -->
-                <version>2.11.2</version> <!-- Version of the Allure Maven plugin -->
+                <version>2.12.0</version> <!-- Version of the Allure Maven plugin -->
                 <executions>
                     <execution>
                         <goals>
