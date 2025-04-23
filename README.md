@@ -115,10 +115,8 @@ private static final Logger logger = LoggerFactory.getLogger(ClassName.class);
 - `ERROR`: Logs error messages when something goes wrong.
 
 #### Example
-```java
-    logger.info("Starting test execution...");
-    logger.error("An error occurred: {}", errorMessage);
-```
+logger.info("Starting test execution...");
+logger.error("An error occurred: {}", errorMessage);
 
 #### Logback Configuration
 Logging behavior is controlled via the `logback.xml` file located in `src/main/resources`. By default, logs are printed to the console, but this can be changed to log to a file.
@@ -158,35 +156,9 @@ To use Allure, you need to add the `allure-testng` dependency to your `pom.xml`:
    mvn allure:serve
    ```
 
-### Allure Steps in Test Code
-To display steps in the Allure report, use the `@Step` annotation in your test methods:
-
-```java
-import io.qameta.allure.Step;
-
-@Step("Entering username: {0} and password: {1}")
-public void login(String username, String password) {
-    // Logic for login
-}
-```
-
-### TestNG Configuration:
-TestNG is configured through the `testng.xml` file, where you can specify which tests to run, pass parameters like browser name, timeouts, etc.
-
-Example `testng.xml`:
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<suite name="SeleniumTestSuite">
-    <test name="SeleniumTests">
-        <!-- Parameters to pass to the tests (browser name, timeout, etc.) -->
-        <parameter name="browser" value="chrome"/>
-        <!-- Specify your test classes here -->
-        <classes>
-            <class name="tests.Test01"/>
-        </classes>
-    </test>
-</suite>
-```
+## TestNG Configuration:
+----------------------
+TestNG is configured through the testng.xml file, where you can specify which tests to run, pass parameters like browser name, timeouts, etc.
 
 ## TestNG Configuration
 
@@ -213,7 +185,6 @@ Example:
 ```properties
 username=your_username
 password=your_password
-base_url=http://your_test_url.com
 ```
 
 These properties will be automatically read and used during test execution.
