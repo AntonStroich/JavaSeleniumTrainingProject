@@ -9,6 +9,7 @@ import pages.AdminLoginPage;
 import pages.AdminRoomsPage;
 import pages.HomePage;
 import org.testng.asserts.SoftAssert;
+import utils.ConfigReader;
 
 /**
  * Test02_03 - Includes multiple verifications for the Admin flow.
@@ -28,11 +29,10 @@ public class Test02_03 extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver, wait);
         adminLoginPage.openPage();
-        adminLoginPage.loginAsAdminFromConfig();
-        roomsPage = new AdminRoomsPage(driver, wait);
+        roomsPage = adminLoginPage.loginWithValidAdminCredentialsFromConfig();
         String pageTitle = roomsPage.getTitle();
         logger.info("Page title after login: {}", pageTitle);
-        softAssert.assertEquals(pageTitle, "Restful-booker-platform demo", "Page title does not match after login");
+        softAssert.assertEquals(pageTitle, ConfigReader.getConfigProperty("pageTitle"), "Page title does not match after login");
         softAssert.assertTrue(roomsPage.isNavbarDisplayed(), "Navbar is not displayed");
         logger.info("Test passed: Page title matches expected value after login");
         softAssert.assertAll();
@@ -44,11 +44,10 @@ public class Test02_03 extends BaseTest {
     @Test(dependsOnMethods = "openAndVerifyTitle")
     @Description("Verify that user is redirected to HomePage after logout and the title is correct")
     public void logoutAndVerifyTitle() {
-        roomsPage.logout();
-        HomePage homePage = new HomePage(driver, wait);
+        HomePage homePage = roomsPage.logout();
         String homeTitle = homePage.getTitle();
         logger.info("Page title after logout: {}", homeTitle);
-        Assert.assertEquals(homeTitle, "Restful-booker-platform demo", "Home page title does not match after logout");
+        Assert.assertEquals(homeTitle, ConfigReader.getConfigProperty("pageTitle"), "Home page title does not match after logout");
         logger.info("Test passed: Home page title matches expected value after logout");
     }
 }

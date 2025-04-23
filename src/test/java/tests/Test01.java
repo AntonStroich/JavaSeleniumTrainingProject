@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.HomePage;
 import io.qameta.allure.*;
+import utils.ConfigReader;
 
 public class Test01 extends BaseTest {
     // Initialize the logger for this class
@@ -23,7 +24,7 @@ public class Test01 extends BaseTest {
         // Log the page title
         logger.info("Page title: {}", pageTitle);
         // Verify the title is correct (make sure the expected title is in the properties file or hardcoded)
-        Assert.assertEquals(pageTitle, "Restful-booker-platform demo", "Page title does not match");
+        Assert.assertEquals(pageTitle, ConfigReader.getConfigProperty("pageTitle"), "Page title does not match");
         // Log success
         logger.info("Test passed: Page title matches the expected value");
     }
