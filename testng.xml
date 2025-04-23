@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="SeleniumTestSuite">
+<suite name="SeleniumTestSuite" parallel="classes" thread-count="2">
     <test name="SeleniumTests">
         <!-- Parameters to pass to the tests (browser name, timeout, etc.) -->
         <parameter name="browser" value="chrome"/>
