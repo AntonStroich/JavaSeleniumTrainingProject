@@ -72,5 +72,4 @@ public abstract class BasePage {
         logger.info("Current page title: {}", title);
         return title;
     }
-
 }
