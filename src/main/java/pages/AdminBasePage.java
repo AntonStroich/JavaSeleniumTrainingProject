@@ -43,18 +43,18 @@ public abstract class AdminBasePage extends BasePage {
         return displayed;
     }
 
-
     /**
-     * Logs out the current admin user by clicking the Logout button in the navbar.
-     * Redirects to the Home page after logout.
+     * Logs out the currently logged-in admin by clicking the Logout button in the navigation bar.
+     * After logout, waits for the transition and then redirects the user to the Home page.
      */
-    @Step("Logout from Admin")
-    public void logout() {
-        navbar.clickLogoutBtn();  // Call the logout button click from AdminNavbar
+    @Step("Logging out from Admin")
+    public HomePage logout() {
+        navbar.clickLogoutBtn();  // Click the logout button in the AdminNavbar
 
-        // Wait for transition to HomePage
+        // Wait for the HomePage to load after logout
         HomePage homePage = new HomePage(driver, wait);
         homePage.waitForPageToLoad();
+        return homePage;
     }
 }
 

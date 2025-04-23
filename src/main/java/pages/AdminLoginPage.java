@@ -84,26 +84,27 @@ public class AdminLoginPage extends AdminBasePage {
     }
 
     /**
-     * Performs a login using credentials from local configuration.
+     * Logs in using the admin credentials stored in the local configuration.
      */
-    @Step("Login to Admin using credentials from config")
-    public void loginAsAdminFromConfig() {
+    @Step("Login to Admin using valid credentials from config")
+    public AdminRoomsPage loginWithValidAdminCredentialsFromConfig() {
         String username = ConfigReader.getLocalProperty("username");
         String password = ConfigReader.getLocalProperty("password");
         loginAs(username, password);
+
+        // Wait for the transition to AdminRoomsPage
+        AdminRoomsPage adminRoomsPage = new AdminRoomsPage(driver, wait);
+        adminRoomsPage.waitForPageToLoad();
+        return adminRoomsPage;
     }
 
     /**
-     * Full login sequence with credentials.
+     * Completes the login process by entering the provided username and password.
      */
     @Step("Login to Admin as user: {username}")
     public void loginAs(String username, String password) {
         enterUsername(username);
         enterPassword(password);
         clickLoginBtn();
-
-        // Wait for transition to AdminRoomsPage
-        AdminRoomsPage adminRoomsPage = new AdminRoomsPage(driver, wait);
-        adminRoomsPage.waitForPageToLoad();
     }
 }
