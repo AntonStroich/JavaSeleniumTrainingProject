@@ -89,7 +89,6 @@ Before running the tests, ensure the following:
      ```properties
      username=your_username
      password=your_password
-     base_url=http://your_test_url.com
      ```
 
 ## Running Tests with Maven
@@ -131,18 +130,6 @@ mvn clean install -Pskip-tests
 
 ## Allure Report
 Allure is a framework for generating beautiful, interactive test reports.
-
-### Installation
-To use Allure, you need to add the `allure-testng` dependency to your `pom.xml`:
-
-```xml
-<dependency>
-    <groupId>io.qameta.allure</groupId>
-    <artifactId>allure-testng</artifactId>
-    <version>2.12.0</version> <!-- Update to the latest version -->
-    <scope>test</scope>
-</dependency>
-```
 
 ### Commands for Allure:
 1. **Run tests**:
