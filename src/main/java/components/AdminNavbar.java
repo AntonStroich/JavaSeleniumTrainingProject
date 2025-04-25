@@ -3,7 +3,6 @@ package components;
 import elements.Button;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 /**
  * Represents the Admin Navbar component.
@@ -16,8 +15,8 @@ public class AdminNavbar extends BaseComponent {
     // Locator for the "Logout" button
     private final By logoutBtn = By.cssSelector(".btn.btn-outline-danger.my-2.my-sm-0");
 
-    public AdminNavbar(WebDriver driver) {
-        super(driver);
+    public AdminNavbar() {
+        super();
     }
 
     /**
@@ -31,7 +30,7 @@ public class AdminNavbar extends BaseComponent {
     }
 
     private Button getLogoutBtn() {
-        return new Button(driver, driver.findElement(logoutBtn));
+        return new Button(driver.findElement(logoutBtn));
     }
 
     /**

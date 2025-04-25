@@ -16,7 +16,7 @@ public class Test01 extends BaseTest {
     @Description("Verify that the valid title is displayed on the home page")
     public void openAndVerifyTitle() {
         // HomePage initialization (this happens after BaseTest @BeforeClass)
-        HomePage homePage = new HomePage(getDriver(), getWait());
+        HomePage homePage = new HomePage();
         // Open the Home page
         homePage.open();
         // Get the title of the page

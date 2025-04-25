@@ -1,6 +1,5 @@
 package elements;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -11,11 +10,10 @@ public class TextField extends BaseElement {
     /**
      * Constructor for a text input field.
      *
-     * @param driver  WebDriver instance
      * @param element WebElement representing the text field
      */
-    public TextField(WebDriver driver, WebElement element) {
-        super(driver, element);
+    public TextField(WebElement element) {
+        super(element);
     }
 
     /**

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.ConfigReader;
+import utils.DriverManager;
 
 /**
  * Abstract base class for all page objects.
@@ -18,9 +19,9 @@ public abstract class BasePage {
     protected WebDriverWait wait;
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public BasePage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public BasePage() {
+        this.driver = DriverManager.getDriver();;
+        this.wait = DriverManager.getWait();
     }
 
     /**

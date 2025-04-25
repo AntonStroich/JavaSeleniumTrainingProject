@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utils.DriverManager;
 
 /**
  * Abstract base class for all custom UI elements.
@@ -17,11 +18,10 @@ public  class BaseElement {
     /**
      * Constructor for wrapping a WebElement.
      *
-     * @param driver  WebDriver instance
      * @param element WebElement to wrap
      */
-    public BaseElement(WebDriver driver, WebElement element) {
-        this.driver = driver;
+    public BaseElement(WebElement element) {
+        this.driver = DriverManager.getDriver();
         this.element = element;
     }
 

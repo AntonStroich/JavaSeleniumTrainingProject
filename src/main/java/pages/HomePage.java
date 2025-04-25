@@ -2,8 +2,6 @@ package pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Page Object for the Home Page.
@@ -13,8 +11,8 @@ public class HomePage extends BasePage {
 
     private final By logo = By.cssSelector(".btn.btn-primary.btn-lg");
 
-    public HomePage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
+    public HomePage() {
+        super();
     }
 
     /**

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utils.DriverManager;
 
 /**
  * Base class for reusable UI components (e.g., navbar, footer).
@@ -14,8 +15,8 @@ public abstract class BaseComponent {
     protected WebDriver driver;
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public BaseComponent(WebDriver driver) {
-        this.driver = driver;
+    public BaseComponent() {
+        this.driver = DriverManager.getDriver();
     }
 
     // Abstract method for child classes to define the root element locator of the component

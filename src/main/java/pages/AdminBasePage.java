@@ -2,8 +2,6 @@ package pages;
 
 import components.AdminNavbar;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,9 +14,9 @@ public abstract class AdminBasePage extends BasePage {
     protected final AdminNavbar navbar;
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public AdminBasePage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-        this.navbar = new AdminNavbar(driver);
+    public AdminBasePage() {
+        super();
+        this.navbar = new AdminNavbar();
     }
 
     /**
@@ -52,7 +50,7 @@ public abstract class AdminBasePage extends BasePage {
         navbar.clickLogoutBtn();  // Click the logout button in the AdminNavbar
 
         // Wait for the HomePage to load after logout
-        HomePage homePage = new HomePage(driver, wait);
+        HomePage homePage = new HomePage();
         homePage.waitForPageToLoad();
         return homePage;
     }

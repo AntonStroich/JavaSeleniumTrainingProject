@@ -4,8 +4,6 @@ import elements.Button;
 import elements.TextField;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ConfigReader;
 
 /**
@@ -19,21 +17,21 @@ public class AdminLoginPage extends AdminBasePage {
     private final By passwordField = By.id("password");
     private final By loginBtn = By.id("doLogin");
 
-    public AdminLoginPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
+    public AdminLoginPage() {
+        super();
     }
 
     // Getters for wrapped elements
     private TextField getUsernameInput() {
-        return new TextField(driver, driver.findElement(usernameField));
+        return new TextField(driver.findElement(usernameField));
     }
 
     private TextField getPasswordInput() {
-        return new TextField(driver, driver.findElement(passwordField));
+        return new TextField(driver.findElement(passwordField));
     }
 
     private Button getLoginBtn() {
-        return new Button(driver, driver.findElement(loginBtn));
+        return new Button(driver.findElement(loginBtn));
     }
 
     /**
@@ -93,7 +91,7 @@ public class AdminLoginPage extends AdminBasePage {
         loginAs(username, password);
 
         // Wait for the transition to AdminRoomsPage
-        AdminRoomsPage adminRoomsPage = new AdminRoomsPage(driver, wait);
+        AdminRoomsPage adminRoomsPage = new AdminRoomsPage();
         adminRoomsPage.waitForPageToLoad();
         return adminRoomsPage;
     }
